@@ -34,7 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import java.time.*;
+import java.time.ZonedDateTime;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 /**
@@ -62,34 +62,33 @@ public class ArticleResource {
 
     /**
      * POST  /articles : Create a new article.
+     * remove @Valid so createdAt could be omitted
      *
      * @param article the article to create
      * @return the ResponseEntity with status 201 (Created) and with body the new article, or with status 400 (Bad Request) if the article has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    // @PostMapping("/articles")
-    // @Timed
-    // public ResponseEntity<Article> createArticle(@Valid @RequestBody ArticleDTO articleDTO) throws URISyntaxException {
-    //     ZonedDateTime zoneDateTime=ZonedDateTime.now();
-
-	// 	System.out.println("ZONEDATETIME: " + zoneDateTime);
-    //     Article article = new Article();
-    //     article.setSlug(articleDTO.getSlug());
-    //     article.setTitle(articleDTO.getTitle());
-    //     article.setDescription(articleDTO.getDescription());
-    //     article.setBody(articleDTO.getBody());
-    //     article.setCreatedAt(zoneDateTime);
-    //     article.setUpdatedAt(zoneDateTime);
-    //     return createArticle(article);
-    // }
 
     @PostMapping("/articles")
     @Timed
-    public ResponseEntity<Article> createArticle(@Valid @RequestBody Article article) throws URISyntaxException {
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) throws URISyntaxException {
         log.debug("REST request to save Article : {}", article);
         if (article.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
         }
+
+        // search for tags
+        val tagList = article.tagList.map {
+            tagRepository.findByName(it) ?: tagRepository.save(Tag(name = it))
+        }
+
+        val article = Article(slug = slug,
+                author = currentUser, title = newArticle.title!!, description = newArticle.description!!,
+                body = newArticle.body!!, tagList = tagList.toMutableList())
+
+        article.setCreatedAt(ZonedDateTime.now());
+        article.setUpdatedAt(ZonedDateTime.now());
+        article.setSlug(article.getTitle().replace(' ', '_').toLowerCase());
 
         Article result = articleRepository.save(article);
         articleSearchRepository.save(result);
