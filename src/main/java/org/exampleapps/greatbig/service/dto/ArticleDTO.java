@@ -1,6 +1,7 @@
 package org.exampleapps.greatbig.service.dto;
 
 import org.exampleapps.greatbig.service.dto.ProfileDTO;
+import org.exampleapps.greatbig.domain.Article;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -151,10 +152,23 @@ public class ArticleDTO implements Serializable {
         return Objects.hashCode(getSlug());
     }
 
+    public Article toArticle() {
+        Article article = new Article();
+        article.setSlug(this.slug);
+        article.setTitle(this.title);
+        article.setDescription(this.description);
+        article.setBody(this.body);
+        // article.setTags(this.tagList);
+        article.setCreatedAt(this.createdAt);
+        article.setUpdatedAt(this.updatedAt);
+        // article.setAuthor(this.author);
+        return article;
+    }
+
     @Override
     public String toString() {
         return "article {" +
-            ", slug='" + getSlug() + "'" +
+            "  slug='" + getSlug() + "'" +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
             ", body='" + getBody() + "'" +
