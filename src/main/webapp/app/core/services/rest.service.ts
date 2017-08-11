@@ -37,13 +37,13 @@ const endpoints = {
 export class RESTService {
     constructor(private http: Http, private config: AppConfig) { }
 
-    getEntities(table: string, query: { [key: string]: string } = {}): Observable<any[]> {
+    getEntities(table: string, query: { [key: string]: string | number } = {}): Observable<any[]> {
         const params: URLSearchParams = new URLSearchParams();
 
         Object.keys(query)
             .forEach((key) => {
                 if (query[key] !== null) {
-                    params.set(key, query[key]);
+                    params.set(key, '' + query[key]);
                 }
             });
 

@@ -3,18 +3,18 @@
     "author": {
       "home": {
         "title": "Authors",
-        "createLabel": "Créer un nouveau User Custom",
-        "createOrEditLabel": "Créer ou éditer un User Custom",
-        "search": "Recherche pour User Custom"
+        "createLabel": "Créer un nouveau Auteur",
+        "createOrEditLabel": "Créer ou éditer un Auteur",
+        "search": "Recherche pour Auteur"
       },
-      "created": "Un nouveau User Custom a été créé avec l'identifiant {{ param }}",
-      "updated": "Le User Custom avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le User Custom avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouveau Auteur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Auteur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Auteur avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le User Custom {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer le Auteur {{ id }} ?"
       },
       "detail": {
-        "title": "User Custom"
+        "title": "Auteur"
       },
       "login": "Login",
       "bio": "Bio",

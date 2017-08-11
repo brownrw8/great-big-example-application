@@ -6,10 +6,10 @@ import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs/Observable';
 import { Database } from '@ngrx/db';
 
-import { CollectionEffects } from '../../../../../../../main/webapp/app/core/store/collection/collection.effects';
-import { Book } from '../../../../../../../main/webapp/app/core/store/book/book.model';
-import * as IDActions from '../../../../../../../main/webapp/app/core/store/id/id.actions';
-import { slices } from '../../../../../../../main/webapp/app/core/store/util';
+import { CollectionEffects } from './collection.effects';
+import { Book } from '../book/book.model';
+import * as IDActions from '../id/id.actions';
+import { slices } from '../util';
 
 export class TestActions extends Actions {
     constructor() {

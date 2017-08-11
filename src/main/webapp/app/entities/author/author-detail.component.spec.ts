@@ -4,11 +4,11 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
-import { GreatBigExampleApplicationTestModule } from '../../../test.module';
-import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { AuthorDetailComponent } from '../../../../../../main/webapp/app/entities/author/author-detail.component';
-import { AuthorService } from '../../../../../../main/webapp/app/entities/author/author.service';
-import { Author } from '../../../../../../main/webapp/app/entities/author/author.model';
+import { GreatBigExampleApplicationTestModule } from '../../../mocks/test.module';
+import { MockActivatedRoute } from '../../../mocks/mock-route.service';
+import { AuthorDetailComponent } from './author-detail.component';
+import { AuthorService } from './author.service';
+import { Author } from './author.model';
 
 describe('Component Tests', () => {
 

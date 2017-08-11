@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
+import { Observable } from 'rxjs/Observable';
 
-import { slices, PayloadAction } from '../util';
-import { actions } from '../slice/slice.actions';
+import { Layout } from './layout.model';
+import { slices, PayloadAction, typeFor } from '../util';
+import { actions, SliceAction } from '../slice/slice.actions';
+import { RESTService } from '../../services/rest.service';
 import * as SliceActions from '../slice/slice.actions';
+import * as EntityActions from '../entity/entity.actions';
 import { WatchService } from '../../../features/talks/services/watch.service';
 
 /**
@@ -19,8 +23,27 @@ export class LayoutEffects {
             return { type: 'TALK_WATCHED', payload: a.payload };
         });
 
+    @Effect()
+    private loadForQueryFromRemote = this.actions$
+        .ofType(typeFor(slices.LAYOUT, SliceActions.actions.UPDATE))
+        .filter((action: SliceAction) => action.payload.filters)   // TODO: make this a better test for this being the blog page layout
+        .withLatestFrom(this.store.select('blogPage'))
+        .switchMap(([action, blogPageLayout]) => {
+            const route = '/articles' + (blogPageLayout.type === 'feed') ? '/feed' : '';
+            return this.dataService.getEntities(route, blogPageLayout.filters)
+                .mergeMap((fetchedEntities) => Observable.from(fetchedEntities))
+                .map((fetchedEntity) => new EntityActions.LoadSuccess(slices.ARTICLE, fetchedEntity))  // one action per entity
+                .catch((err) => {
+                    console.log(err);
+                    return Observable.of(new EntityActions.AddUpdateFail(slices.ARTICLE, null));
+                })
+        }
+        );
+
     constructor(
         private watchService: WatchService,
-        private actions$: Actions
+        private actions$: Actions,
+        private store: Store<Layout>,
+        private dataService: RESTService
     ) { }
 }

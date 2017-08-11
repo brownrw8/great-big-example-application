@@ -20,6 +20,7 @@ export interface Layout {
 export function initialLayout() {
     return {
         berniePage: initialBerniePageLayout,
+        blogPage: initialBlogPageLayout,
         booksPage: initialBooksPageLayout,
         heroesDashboardPage: initialHeroesDashboardPageLayout,
         msg: '',

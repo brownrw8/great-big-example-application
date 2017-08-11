@@ -6,7 +6,7 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiLanguageService, 
 import { Comment } from './comment.model';
 import { CommentService } from './comment.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
+import { PaginationConfig } from '../../core/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-comment',
@@ -14,7 +14,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 })
 export class CommentComponent implements OnInit, OnDestroy {
 
-currentAccount: any;
+    currentAccount: any;
     comments: Comment[];
     error: any;
     success: any;
@@ -57,19 +57,21 @@ currentAccount: any;
             this.commentService.search({
                 query: this.currentSearch,
                 size: this.itemsPerPage,
-                sort: this.sort()}).subscribe(
-                    (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
-                    (res: ResponseWrapper) => this.onError(res.json)
+                sort: this.sort()
+            }).subscribe(
+                (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+                (res: ResponseWrapper) => this.onError(res.json)
                 );
             return;
         }
         this.commentService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
-        );
+            );
     }
     loadPage(page: number) {
         if (page !== this.previousPage) {
@@ -78,7 +80,8 @@ currentAccount: any;
         }
     }
     transition() {
-        this.router.navigate(['/comment'], {queryParams:
+        this.router.navigate(['/comment'], {
+            queryParams:
             {
                 page: this.page,
                 size: this.itemsPerPage,

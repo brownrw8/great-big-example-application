@@ -4,23 +4,23 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
-import { GreatBigExampleApplicationTestModule } from '../../../test.module';
-import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { CommentDetailComponent } from '../../../../../../main/webapp/app/entities/comment/comment-detail.component';
-import { CommentService } from '../../../../../../main/webapp/app/entities/comment/comment.service';
-import { Comment } from '../../../../../../main/webapp/app/entities/comment/comment.model';
+import { GreatBigExampleApplicationTestModule } from '../../../mocks/test.module';
+import { MockActivatedRoute } from '../../../mocks/mock-route.service';
+import { ArticleDetailComponent } from './article-detail.component';
+import { ArticleService } from './article.service';
+import { Article } from './article.model';
 
 describe('Component Tests', () => {
 
-    describe('Comment Management Detail Component', () => {
-        let comp: CommentDetailComponent;
-        let fixture: ComponentFixture<CommentDetailComponent>;
-        let service: CommentService;
+    describe('Article Management Detail Component', () => {
+        let comp: ArticleDetailComponent;
+        let fixture: ComponentFixture<ArticleDetailComponent>;
+        let service: ArticleService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [GreatBigExampleApplicationTestModule],
-                declarations: [CommentDetailComponent],
+                declarations: [ArticleDetailComponent],
                 providers: [
                     JhiDateUtils,
                     JhiDataUtils,
@@ -29,17 +29,17 @@ describe('Component Tests', () => {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({ id: 123 })
                     },
-                    CommentService,
+                    ArticleService,
                     JhiEventManager
                 ]
-            }).overrideTemplate(CommentDetailComponent, '')
+            }).overrideTemplate(ArticleDetailComponent, '')
                 .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(CommentDetailComponent);
+            fixture = TestBed.createComponent(ArticleDetailComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(CommentService);
+            service = fixture.debugElement.injector.get(ArticleService);
         });
 
 
@@ -47,14 +47,14 @@ describe('Component Tests', () => {
             it('Should call load all on init', () => {
                 // GIVEN
 
-                spyOn(service, 'find').and.returnValue(Observable.of(new Comment(10)));
+                spyOn(service, 'find').and.returnValue(Observable.of(new Article(10)));
 
                 // WHEN
                 comp.ngOnInit();
 
                 // THEN
                 expect(service.find).toHaveBeenCalledWith(123);
-                expect(comp.comment).toEqual(jasmine.objectContaining({ id: 10 }));
+                expect(comp.article).toEqual(jasmine.objectContaining({ id: 10 }));
             });
         });
     });

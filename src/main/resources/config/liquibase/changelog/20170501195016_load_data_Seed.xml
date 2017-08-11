@@ -87,6 +87,7 @@
                   file="config/liquibase/comment.csv"
                   separator=","
                   tableName="comment">
+        </loadData>
         <loadData encoding="UTF-8"
                   file="config/liquibase/talk.csv"
                   separator=","

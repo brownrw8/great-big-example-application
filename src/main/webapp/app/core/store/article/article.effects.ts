@@ -45,23 +45,6 @@ export class ArticleEffects {
     //     );
 
     @Effect()
-    private loadForQueryFromRemote = Observable.combineLatest(this.actions$
-        .ofType(typeFor(slices.LAYOUT, SliceActions.actions.UPDATE))
-        .filter((action: SliceAction) => action.payload.filters),   // TODO: make this a better test for this being the blog page layout
-        fromRoot.getBlogPageLayout, (action, blogPageLayout) => {
-
-            const route = '/articles' + (blogPageLayout.type === 'feed') ? '/feed' : '';
-            return this.dataService.getEntities(route, blogPageLayout.filters)
-                .mergeMap((fetchedEntities) => Observable.from(fetchedEntities))
-                .map((fetchedEntity) => new EntityActions.LoadSuccess(slices.ARTICLE, fetchedEntity))  // one action per entity
-                .catch((err) => {
-                    console.log(err);
-                    return Observable.of(new EntityActions.AddUpdateFail(slices.ARTICLE, null));
-                })
-        }
-    );
-
-    @Effect()
     private favorite$ = sliceFunctions.postToRemote$(this.actions$, slices.ARTICLE, this.dataService, actions.FAVORITE, new ArticleActions.FavoriteSuccess(), new ArticleActions.FavoriteFail());
 
     @Effect()
