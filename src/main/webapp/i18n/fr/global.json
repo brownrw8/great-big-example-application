@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "Great Big Example Application",
+        "title": "Grande Application D'Exemple",
         "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
         "menu": {
             "home": "Accueil",
@@ -16,12 +16,15 @@
                 "claimRebuttal": "Claim Rebuttal",
                 "article": "Article",
                 "tag": "Tag",
+                "entry": "Entry",
                 "message": "Message",
                 "comment": "Commentaire",
                 "author": "Auteur",
-                "jhipster-needle-menu-add-article": "JHipster will add additional entities here (do not translate!)"
+                "talk": "Talk",
+                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "features": {
+                "about": "Sur",
                 "bernie": "Bernie",
                 "blog": "Blog",
                 "books": "Collection de livres",
@@ -32,9 +35,12 @@
                 "game": "Jeu",
                 "dashboard": "Tableau de Bord",
                 "heroes": "Héros",
+                "legal": "Légal",
                 "main": "Fonctionnalité",
+                "meals": "Repas",
                 "message": "Messages",
                 "notes": "Remarques",
+                "talks": "Discourses",
                 "todo": "Choses à faire",
                 "user": "Utilisateur",
                 "wiki": "Rechercher Wikipedia"

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Article } from './article.model';
 import { ArticlePopupService } from './article-popup.service';
@@ -19,7 +19,6 @@ export class ArticleDeleteDialogComponent {
     constructor(
         private articleService: ArticleService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class ArticleDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('greatBigExampleApplicationApp.article.deleted', { param : id }, null);
     }
 }
 
@@ -52,7 +50,7 @@ export class ArticleDeletePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private articlePopupService: ArticlePopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

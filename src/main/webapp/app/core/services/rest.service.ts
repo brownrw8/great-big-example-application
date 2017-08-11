@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, URLSearchParams, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
@@ -29,7 +29,8 @@ const endpoints = {
     crisis: 'crises',
     hero: 'heroes',
     note: 'notes',
-    rebuttal: 'rebuttals'
+    rebuttal: 'rebuttals',
+    talk: 'talks'
 };
 
 @Injectable()
@@ -41,7 +42,9 @@ export class RESTService {
 
         Object.keys(query)
             .forEach((key) => {
-                params.set(key, query[key]);
+                if (query[key] !== null) {
+                    params.set(key, query[key]);
+                }
             });
 
         const endpoint = endpoints[table] || table; // Could be a table name or a named endpoint TODO: reconsider this
@@ -50,6 +53,8 @@ export class RESTService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+    // TODO: make table the first parameter of all of these
 
     getEntity(id: number | string, table: string): Observable<any> {
         return this.http.get(`${this.config.apiUrl}/${endpoints[table]}/${id}`)
@@ -76,7 +81,7 @@ export class RESTService {
     }
 
     prepareRecord(record: any) {
-        let newRecord = { ...record };
+        const newRecord = { ...record };
         delete newRecord.dirty;
         return newRecord;
     }

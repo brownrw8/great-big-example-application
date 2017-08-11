@@ -111,7 +111,14 @@ relationship OneToOne {
     Author{user(login)} to User{custom(login)}
 }
 
-// skipClient for * except User, Profile
-// skipServer for * except User, Profile
-skipClient for Profile
-skipServer for Profile
+paginate Message with infinite-scroll
+
+entity Talk {
+	title String required,
+    speaker String required,
+    description TextBlob required,
+    yourRating Float max(10),
+    rating Float
+}
+
+paginate Talk with pager

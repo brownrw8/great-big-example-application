@@ -7,13 +7,13 @@ import { GreatBigExampleApplicationSharedModule } from '../../shared/shared.modu
 import { ContactPage } from './contact.page';
 import { ContactRouting } from './contact.routing';
 import { ContactEffects } from '../../core/store/contact/contact.effects';
-import { customHttpProvider } from '../../blocks/interceptor/http.provider';
+import { customHttpProvider } from '../../core/interceptor/http.provider';
 
 @NgModule({
     imports: [
         GreatBigExampleApplicationSharedModule,
         ContactRouting,
-        EffectsModule.run(ContactEffects),
+        EffectsModule.forRoot([ContactEffects]),
         ReactiveFormsModule
     ],
     declarations: [

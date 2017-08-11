@@ -76,25 +76,20 @@ export class ArticleDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.article.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.articleService.update(this.article), false);
+                this.articleService.update(this.article));
         } else {
             this.subscribeToSaveResponse(
-                this.articleService.create(this.article), true);
+                this.articleService.create(this.article));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Article>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Article>) {
         result.subscribe((res: Article) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Article, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'greatBigExampleApplicationApp.article.created'
-            : 'greatBigExampleApplicationApp.article.updated',
-            { param : result.id }, null);
-
-        this.eventManager.broadcast({ name: 'articleListModification', content: 'OK'});
+    private onSaveSuccess(result: Article) {
+        this.eventManager.broadcast({ name: 'articleListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -145,11 +140,11 @@ export class ArticlePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private articlePopupService: ArticlePopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.articlePopupService
                     .open(ArticleDialogComponent, params['id']);
             } else {

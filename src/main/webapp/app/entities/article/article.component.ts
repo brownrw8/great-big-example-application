@@ -6,7 +6,7 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiLanguageService, 
 import { Article } from './article.model';
 import { ArticleService } from './article.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
+import { PaginationConfig } from '../../core/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-article',
@@ -56,7 +56,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
             }).subscribe(
                 (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
                 (res: ResponseWrapper) => this.onError(res.json)
-            );
+                );
             return;
         }
         this.articleService.query({
@@ -66,7 +66,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
         }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
-        );
+            );
     }
 
     reset() {

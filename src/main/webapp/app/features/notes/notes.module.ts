@@ -11,13 +11,13 @@ import { AddButtonComponent } from './add-button/add-button.component';
 import { NotesPage } from './notes.page';
 import { NotesRouting } from './notes.routing';
 import { GreatBigExampleApplicationSharedModule } from '../../shared/shared.module';
-import { customHttpProvider } from '../../blocks/interceptor/http.provider';
+import { customHttpProvider } from '../../core/interceptor/http.provider';
 
 @NgModule({
     imports: [
         GreatBigExampleApplicationSharedModule,
         NotesRouting,
-        EffectsModule.run(NoteEffects)
+        EffectsModule.forRoot([NoteEffects])
     ],
     declarations: [
         NotesPage,

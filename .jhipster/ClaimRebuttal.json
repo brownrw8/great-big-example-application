@@ -15,9 +15,11 @@
             "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20170617213418",
+    "changelogDate": "20170725052213",
     "entityTableName": "claim_rebuttal",
     "dto": "no",
     "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "skipClient": true,
+    "skipServer": true
 }

@@ -20,9 +20,11 @@
                 "message": "Message",
                 "comment": "Comment",
                 "author": "Author",
-                "jhipster-needle-menu-add-article": "JHipster will add additional entities here (do not translate!)"
+                "talk": "Talk",
+                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "features": {
+                "about": "About",
                 "bernie": "Bernie",
                 "blog": "Blog",
                 "booksFind": "Search for Books",
@@ -33,9 +35,12 @@
                 "dashboard": "Dashboard",
                 "game": "Game",
                 "heroes": "Heroes",
+                "legal": "Legal",
                 "main": "Features",
+                "meals": "Meals",
                 "message": "Messages",
                 "notes": "Notes",
+                "talks": "Talks",
                 "user": "User",
                 "wiki": "Search Wikipedia"
             },

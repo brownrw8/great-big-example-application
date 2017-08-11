@@ -22,9 +22,11 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170617213414",
+    "changelogDate": "20170725052209",
     "entityTableName": "claim",
     "dto": "no",
     "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "skipClient": true,
+    "skipServer": true
 }

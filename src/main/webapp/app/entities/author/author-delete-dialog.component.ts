@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Author } from './author.model';
 import { AuthorPopupService } from './author-popup.service';
@@ -19,7 +19,6 @@ export class AuthorDeleteDialogComponent {
     constructor(
         private authorService: AuthorService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class AuthorDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('greatBigExampleApplicationApp.author.deleted', { param : id }, null);
     }
 }
 
@@ -52,7 +50,7 @@ export class AuthorDeletePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private authorPopupService: AuthorPopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
