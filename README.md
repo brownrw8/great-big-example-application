@@ -45,14 +45,17 @@ use, and don't have any preferences yet).
 scientists are above that and only engage in abstract thought of conceptual, unreal demos" (and exposure 
 to code used to conduct real business is somehow a detriment to learning abstract concepts?).
 
-"Demo/blog creators don't have time to provide the material of lessons in the context of a finished product" 
-(like what they have readily at hand because they do this every day for a living).
+"Creators of many tutorials don't have time to implement all of them as parts of the same big example 
+(like what they have readily at hand because they do this every day for a living), so they need to 
+make each one from scratch by spending the time to simplify the approaches they use on the job."
+
+"It could take as many as five or even six minutes to install all the packages for a big example."
 
 "Bloated!!"
 
 There's a strange resistance to using big, commercial-grade examples as the _primary_ instrument of web development
 education or even at all. Would you teach automotive engineering using go-karts? Home construction using just windows? 
-I don't understand the resistance, not even a little. The case seems pretty plain to me but for to settle the
+I don't understand the resistance, not even a little. The case seems pretty plain to me but to settle the
 matter, here are some reasons why I think web development should be taught using big examples:
 
     1. Real code answers every question, not just what the authors of tutorials choose to answer through
@@ -71,18 +74,19 @@ matter, here are some reasons why I think web development should be taught using
     3. If you want a job making commercial-grade code, you should study commercial-grade code,
     not tutorial-grade code. Perfect practice makes perfect.
     
-    4. A tutorial contains some parts related to the lesson and some ancillary parts that are there
+    4. Each tutorial contains some parts related to the lesson and some ancillary parts that are there
     to make the example work. The ancillary parts will differ from tutorial to tutorial. So with each
-    new tutorial you need to re-learn these unrelated things in order to understand the concept subject 
-    matter. With a unified, big example, you only need to learn these parts once.
+    new tutorial you need to re-learn these off-topic things in order to understand the lesson's subject 
+    matter. With a single, unified, big example that is used to teach every concept, you only need to 
+    learn these parts once.
     
     5. Tutorials show you how you *can* use a feature of the technology but often they 
     do so in situations when in real life you would not do things that way. This can cost a lot of 
     time. It's just as important to know when to use a technology's features as it is to know how.
 
     6. If you want to know how fast an app using a particular technology will build, run and test in
-    your development environment before investing the time to learn it - and you should - then you need 
-    source code for a big app before you even write Hello World.
+    your development environment before investing the time to learn it, then you need source code for 
+    a big app before you even write Hello World.
 
     7. If you want to know the complexity limits a technology will place on your app before you
     commit to using it, there's no better way than to see a complex example made with that technology.
@@ -90,7 +94,7 @@ matter, here are some reasons why I think web development should be taught using
     8. It's a whole lot easier to vet an idea or accept an approach others have taken when you have
     a complete application with all of its edge cases to show you what needs to be accommodated. 
     By containing many edge cases, a big application will quickly answer the common learner's question:
-    "Why isn't this done the easy way I think it should be done?", or "What if we tried X instead?"
+    "Why isn't this done the simple way I think it should be done?", or "What if we tried X instead?"
     Without access to lots of edge cases in the beginning, you can go down the wrong road for a long time.
 
 I've had a peculiarly difficult time making the case to software development educators to provide 
