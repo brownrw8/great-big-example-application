@@ -38,8 +38,9 @@ See the project's [to do list](https://github.com/dancancro/great-big-example-ap
 (but not for students of every other line of work under the sun?).
 
 "Approaches are a matter of personal preference and shouldn't be imposed" (on beginners who just want 
-to make something that totally works, don't want to waste time learning an approach that the pros don't 
-use, and don't have any preferences yet). 
+to make something that totally works, don't want to waste time learning an approach that the pros 
+[don't actually use](https://gitter.im/angular/angular?at=596d4193f5b3458e3057ea73), and don't have 
+any preferences yet). 
 
 "If _all_ you want to do is be a code monkey then sure, study real examples, but _real_ computer 
 scientists are above that and only engage in abstract thought of conceptual, unreal demos" (and exposure 
@@ -53,23 +54,24 @@ make each one from scratch by spending the time to simplify the approaches they 
 
 "Bloated!!"
 
-There's a strange resistance to using big, commercial-grade examples as the _primary_ instrument of web development
-education or even at all. Would you teach automotive engineering using go-karts? Home construction using just windows? 
-I don't understand the resistance, not even a little. The case seems pretty plain to me but to settle the
-matter, here are some reasons why I think web development should be taught using big examples:
+There's a strange resistance to using big, commercial-grade examples as the _primary_ instrument of web 
+development education or even at all. Would you teach automotive engineering using go-karts? Home construction 
+using just windows? I don't understand the resistance, not even a little. The case seems pretty plain to me 
+but to settle the matter, here are some reasons why web development should be taught using big examples:
 
-    1. Real code answers every question, not just what the authors of tutorials choose to answer through
-    their choices of simplifications.
+    1. Production-ready code answers every question, not just what the authors of tutorials choose to 
+    answer through their choices of simplifications.
     
-    2. To make something new as an expert would do it, it's much easier to copy and modify a thing
-    made by experts, no matter how complex, than to synthesize the missing details removed for the 
-    sake of "simplicity", out of nothing, no matter how simple. To do the latter requires full 
-    comprehension of a menagerie of inconsistent learning materials in inconsistent contexts, all but
-    one of which approaches you will ultimately reject. I did that to make this; it's not fun. To do 
-    the former you copy, find/replace, modify, and compare what you're making with what works until 
-    what you're making also works. It's just what you'll do to make something new *after* you have 
-    signed the NDA and get keys to the castle of doing things like professionals do and the vault of
-    expertly made things to copy and modify.
+    2. To make something new as an expert would do it, it's much easier to copy and modify, or study and
+    emulate, an exact thing made by experts, no matter how complex, than to synthesize the missing details 
+    removed for the sake of "simplicity", out of nothing, no matter how simple. To do the latter requires 
+    full comprehension of a menagerie of inconsistent learning materials in inconsistent contexts, all but
+    one of which approaches you will ultimately reject and count as wasted learn time. I did that to make 
+    this; it's not fun. To do the former you copy, find/replace, modify, and compare what you're making 
+    with what works until what you're making also works. It's just what you'll do on the job to make 
+    something new *after* you have signed the NDA and get keys to the castle of doing things like 
+    professionals do and the vault of expertly made things to copy/modify, or study/emulate if you prefer.
+    Then spend all that saved time instead solving problems that _haven't_ been solved already.
 
     3. If you want a job making commercial-grade code, you should study commercial-grade code,
     not tutorial-grade code. Perfect practice makes perfect.
@@ -99,9 +101,8 @@ matter, here are some reasons why I think web development should be taught using
 
 I've had a peculiarly difficult time making the case to software development educators to provide 
 a single, giant example app for their students akin to what they work on every day for their clients 
-and employers. I'm not sure why, but it can be pretty hard to find out exactly how the best in this business
-[do things](https://gitter.im/angular/angular?at=596d4193f5b3458e3057ea73). So here's this attempt at one from 
-unemployed me. No NDA needed to see it.
+and employers. I'm not sure why, but it can be pretty hard to find out exactly how the best in this business 
+do things. So here's this attempt at one from unemployed me. No NDA needed to see it.
 
 # How did this great big app happen?
 
@@ -255,8 +256,16 @@ The `yarn run` command will list all of the scripts available to run for this pr
 
 |File|Setting|Source|
 |:-- |:-- |:-- |
-| src/main/resources/config/application.yml | spring.social.google.client-id, spring.social.google.client-secret, spring.social.facebook.client-id, spring.social.facebook.client-secret, spring.social.twitter.client-id, spring.social.twitter.client-secret | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
-| src/main/resources/config/application-prod.yml | spring.data.elasticsearch.cluster-name, spring.data.elasticsearch.cluster-nodes | [instructions](https://jhipster.github.io/using-elasticsearch/)|
+| src/main/resources/config/application.yml | spring.social.google.client-id | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
+| | spring.social.google.client-secret | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
+| | spring.social.facebook.client-id | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
+| | spring.social.facebook.client-secret | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
+| | spring.social.twitter.client-id | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
+| | spring.social.twitter.client-secret | [instructions](https://jhipster.github.io/tips/012_tip_add_new_spring_social_connector.html) |
+| src/main/resources/config/application-prod.yml | spring.data.elasticsearch.cluster-name | [instructions](https://jhipster.github.io/using-elasticsearch/)|
+| | spring.data.elasticsearch.cluster-nodes | [instructions](https://jhipster.github.io/using-elasticsearch/)|
+| src/main/resources/config/application-prod.yml | spring.datasource.username | your postgresql username |
+| | spring.datasource.password | your postgresql password |
 
 ### Managing dependencies
 
@@ -300,6 +309,14 @@ will generate few files:
 
 ## Building for production
 
+This app is setup to use Postgresql for production data storage. I always have a terrible time setting up PostgreSQL.
+Should I use the postgresql.org download? the EnterpriseDB download? The homebrew version? Isn't there a version
+that comes with OSX? If you make a mistake and have to uninstall, which of many different uninstall instructions
+should you use? So I'm not going to put instructions here because they probably won't work for you. 
+
+Somehow set up a server on localhost: 5432 with a database named "GreatBigExampleApplication" owned by a user named "GreatBigExampleUser" 
+with password "password".
+
 To optimize the GreatBigExampleApplication application for production, run:
 
     ./mvnw -Pprod clean package
@@ -315,15 +332,15 @@ Refer to [Using JHipster in production][] for more details.
 
 To inspect the bundle use [source-map-explorer](https://angular.io/guide/aot-compiler#inspect-the-bundle)
 
-## Testing
+## Server tests
 
-To launch your application's tests, run:
+To launch your backend, java tests, run:
 
     ./mvnw clean test
 
 ### Client tests
 
-Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in [src/test/javascript/](src/test/javascript/) and can be run with:
+Unit tests are run by [Karma][] and written with [Jasmine][]. They can be run with:
 
     yarn test
 
@@ -383,6 +400,18 @@ To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-c
 [Protractor]: https://angular.github.io/protractor/
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
+
+## Deploy to Heroku
+
+Since this is a big app, you need to hack the jhipster stdout buffer size or it won't work. Edit 
+file `node_modules/generator-jhipster/generator-base.js` by increasing to 2000 the buffer size
+
+    child.stdout = exec(buildCmd, { maxBuffer: 1024 * 500 }, cb).stdout;
+
+Then run the following. This will use the jhipster in your project's node_modules directory.
+    
+    yo jhipster:heroku
+
 
 If you get stuck on anything, no matter how little, 
 please let me know. I know how the little things are what cause the problems and I don't want you to have any problems.

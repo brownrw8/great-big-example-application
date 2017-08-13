@@ -14,6 +14,9 @@ import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ArticleEffects } from '../../core/store/article/article.effects';
+import { ProfileEffects } from '../../core/store/profile/profile.effects';
+import { TagEffects } from '../../core/store/tag/tag.effects';
+import { CommentEffects } from '../../core/store/comment/comment.effects';
 
 @NgModule({
     imports: [
@@ -23,7 +26,7 @@ import { ArticleEffects } from '../../core/store/article/article.effects';
         HomeModule,
         ProfileModule,
         SharedModule,
-        EffectsModule.forRoot([ArticleEffects]),
+        EffectsModule.forRoot([ArticleEffects, ProfileEffects, TagEffects, CommentEffects]),
     ],
     declarations: [
         BlogPage,

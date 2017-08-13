@@ -50,9 +50,6 @@ export class ArticleEffects {
     @Effect()
     private unFavorite$ = sliceFunctions.deleteFromRemote$(this.actions$, slices.ARTICLE, this.dataService, actions.FAVORITE, new ArticleActions.FavoriteSuccess(), new ArticleActions.FavoriteFail());
 
-    @Effect()
-    private follow$ = sliceFunctions.postToRemote$(this.actions$, slices.ARTICLE, this.dataService, actions.FOLLOW, new ArticleActions.FollowSuccess(), new ArticleActions.FollowFail());
-
     constructor(
         private store: Store<Article>,
         private actions$: Actions,

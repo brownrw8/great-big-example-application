@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../../core/store';
 import { Profile } from '../../../../core/store/profile/profile.model';
 import { Principal } from '../../../../shared/auth/principal.service';
-import * as ArticleActions from '../../../../core/store/article/article.actions';
+import * as ProfileActions from '../../../../core/store/profile/profile.actions';
 import { slices } from '../../../../core/store/util';
 
 @Component({
@@ -34,7 +34,7 @@ export class FollowButtonComponent {
 
         // Follow this profile if we aren't already
         if (!this.profile.following) {
-            this.store.dispatch(new ArticleActions.Follow());
+            this.store.dispatch(new ProfileActions.Follow(this.profile.username));
 
             // this.profilesService.follow(this.profile.username)
             //     .subscribe(
@@ -47,7 +47,7 @@ export class FollowButtonComponent {
 
             // Otherwise, unfollow this profile
         } else {
-            this.store.dispatch(new ArticleActions.Unfollow());
+            this.store.dispatch(new ProfileActions.Unfollow(this.profile.username));
             //     this.profilesService.unfollow(this.profile.username)
             //         .subscribe(
             //         data => {

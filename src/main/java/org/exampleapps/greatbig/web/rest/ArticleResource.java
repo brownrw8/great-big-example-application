@@ -115,9 +115,9 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<Article> createArticle(@RequestBody Article article) throws URISyntaxException {
         log.debug("REST request to save Article : {}", article);
-        // if (article.getId() != null) {
-        //     return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
-        // }
+        if (article.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
+        }
 
         // for(int i = 0; i < article.getTagList().length; i++) {
         //     String tagName = article.getTagList()[i];
