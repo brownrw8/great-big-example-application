@@ -20,7 +20,7 @@ overwhelming starting point option overload. Hopefully this will persuade a few 
 that energy instead into improving what already exists. To this end I have made, over the course of the past 4 years, 
 [the world's biggest, most detailed database of web technology selling points](https://goo.gl/yp2YgJ)
 so things could be compared easily in broad daylight without the hype and selective disclosure of
-a typical product/project sales page. Use it to determine what's best. Then help make it better. See 
+a typical product/project sales page. Use it to determine what's best. Then help make that thing better. See 
 [below](https://github.com/dancancro/great-big-example-application#demonstrations-features-and-selling-points) 
 for a sample slice of it.
 
@@ -34,8 +34,9 @@ See the project's [to do list](https://github.com/dancancro/great-big-example-ap
 
 "Every real app is different" (so teaching with none of them is better than with any?).
 
-"Big (real) artifacts of the craft are too complex and overwhelming for students of web development" 
-(but not for students of every other line of work under the sun?).
+"Big, commercial artifacts of the craft are too complex and overwhelming for students of web development" 
+(but not for those same students on the day after they become an employee? not for students of every 
+other line of work under the sun?).
 
 "Approaches are a matter of personal preference and shouldn't be imposed" (on beginners who just want 
 to make something that totally works, don't want to waste time learning an approach that the pros 
@@ -64,7 +65,7 @@ but to settle the matter, here are some reasons why web development should be ta
     
     2. To make something new as an expert would do it, it's much easier to copy and modify, or study and
     emulate, an exact thing made by experts, no matter how complex, than to synthesize the missing details 
-    removed for the sake of "simplicity", out of nothing, no matter how simple. To do the latter requires 
+    removed for the sake of simplicity, out of nothing, no matter how simple. To do the latter requires 
     full comprehension of a menagerie of inconsistent learning materials in inconsistent contexts, all but
     one of which approaches you will ultimately reject and count as wasted learn time. I did that to make 
     this; it's not fun. To do the former you copy, find/replace, modify, and compare what you're making 
@@ -78,9 +79,9 @@ but to settle the matter, here are some reasons why web development should be ta
     
     4. Each tutorial contains some parts related to the lesson and some ancillary parts that are there
     to make the example work. The ancillary parts will differ from tutorial to tutorial. So with each
-    new tutorial you need to re-learn these off-topic things in order to understand the lesson's subject 
-    matter. With a single, unified, big example that is used to teach every concept, you only need to 
-    learn these parts once.
+    new tutorial you need to learn another take on these off-topic things in order to understand the 
+    lesson's subject matter. With a single, unified, big example used for all the lessons, you only need 
+    to learn these parts once and can then spend your thinking energy on the lessons.
     
     5. Tutorials show you how you *can* use a feature of the technology but often they 
     do so in situations when in real life you would not do things that way. This can cost a lot of 
@@ -310,23 +311,25 @@ will generate few files:
 ## Building for production
 
 This app is setup to use Postgresql for production data storage. I always have a terrible time setting up PostgreSQL.
-Should I use the postgresql.org download? the EnterpriseDB download? The homebrew version? Isn't there a version
+Should I use the postgresql.org download? the EnterpriseDB download? the homebrew version? Isn't there a version
 that comes with OSX? If you make a mistake and have to uninstall, which of many different uninstall instructions
-should you use? So I'm not going to put instructions here because they probably won't work for you. 
+should you use? It's confusing. So I'm not going to put instructions here because they probably won't work for you. 
 
-Somehow set up a server on localhost: 5432 with a database named "GreatBigExampleApplication" owned by a user named "GreatBigExampleUser" 
-with password "password".
+Somehow set up a server on localhost:5432 with a database named "GreatBigExampleApplication" owned by a user named "GreatBigExampleUser" 
+with password "password". If you use other values, just edit `src/main/resources/config/application-prod.yml` accordingly.
 
-To optimize the GreatBigExampleApplication application for production, run:
+Then run:
 
     ./mvnw -Pprod clean package
 
 This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
-To ensure everything worked, run:
+To ensure everything worked, run the following. Unlike dev, this will be one server for both the front and back.
 
     java -jar target/*.war
 
-Then navigate to [http://localhost:8090](http://localhost:8090) in your browser.
+This will create the database tables the first time and execute liquibase changes as you add them.
+
+To see the app navigate to [http://localhost:8090](http://localhost:8090) in your browser.
 
 Refer to [Using JHipster in production][] for more details.
 
@@ -411,7 +414,6 @@ file `node_modules/generator-jhipster/generator-base.js` by increasing to 2000 t
 Then run the following. This will use the jhipster in your project's node_modules directory.
     
     yo jhipster:heroku
-
 
 If you get stuck on anything, no matter how little, 
 please let me know. I know how the little things are what cause the problems and I don't want you to have any problems.

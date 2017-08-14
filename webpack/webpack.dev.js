@@ -29,13 +29,13 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
                 '/v2/api-docs',
                 '/h2-console'
             ],
-            target: 'http://127.0.0.1:8090',
+            target: 'http://127.0.0.1:8070',
             secure: false
         }, {
             context: [
                 '/websocket'
             ],
-            target: 'ws://127.0.0.1:8090',
+            target: 'ws://127.0.0.1:8070',
             ws: true
         }]
     },
@@ -54,16 +54,16 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         }]
     },
     plugins: [
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 9010,
-            proxy: {
-                target: 'http://localhost:9070',
-                ws: true
-            }
-        }, {
-                reload: false
-            }),
+        // new BrowserSyncPlugin({
+        //     host: 'localhost',
+        //     port: 9010,
+        //     proxy: {
+        //         target: 'http://localhost:9070',
+        //         ws: true
+        //     }
+        // }, {
+        //         reload: false
+        //     }),
         new ExtractTextPlugin('styles.css'),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.NamedModulesPlugin(),
