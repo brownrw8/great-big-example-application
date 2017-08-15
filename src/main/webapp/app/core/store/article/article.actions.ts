@@ -1,8 +1,9 @@
-import { SliceAction } from '../slice/slice.actions';
+import { EntityAction, actions as entityActions } from '../entity/entity.actions';
 import { Article } from './article.model';
 import { slices } from '../util';
 
 export const actions = {
+    ...entityActions,
     FAVORITE: 'FAVORITE',
     FAVORITE_SUCCESS: 'FAVORITE_SUCCESS',
     FAVORITE_FAIL: 'FAVORITE_FAIL',
@@ -11,7 +12,7 @@ export const actions = {
     UNFAVORITE_FAIL: 'UNFAVORITE_FAIL'
 }
 
-class ArticleAction extends SliceAction {
+class ArticleAction extends EntityAction<Article> {
     constructor(obj = {}) {
         super(slices.ARTICLE, obj);
     }

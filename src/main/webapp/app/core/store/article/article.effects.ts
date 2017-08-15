@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Article } from './article.model';
 import { slices } from '../util';
@@ -16,6 +17,7 @@ import * as ArticleActions from './article.actions';
 import { initialBlogPageLayout } from '../../../features/blog/blog.layout';
 import * as SliceActions from '../slice/slice.actions';
 import * as fromRoot from '../../../core/store';
+import { PayloadAction } from '../util';
 
 @Injectable()
 export class ArticleEffects {
@@ -25,6 +27,22 @@ export class ArticleEffects {
     private updateToRemote$ = entityFunctions.updateToRemote$(this.actions$, slices.ARTICLE, this.dataService, this.store);
     @Effect()
     private addToRemote$ = entityFunctions.addToRemote$(this.actions$, slices.ARTICLE, this.dataService, this.store);
+
+    @Effect()
+    private navigateOnArticleAddSuccess = this.actions$
+        .ofType(typeFor(slices.ARTICLE, actions.ADD_SUCCESS))
+        .map((action) => {
+            this.router.navigateByUrl('/features/blog/article/' + action.payload.slug);
+            return Observable.empty();
+        });
+
+    @Effect()
+    private navigateOnArticleDeleteSuccess = this.actions$
+        .ofType(typeFor(slices.ARTICLE, actions.DELETE_SUCCESS))
+        .map((action) => {
+            this.router.navigateByUrl('/features/blog/article/');
+            return Observable.empty();
+        });
 
     // @Effect()
     // // export function loadFromRemote$(actions$: Actions, slice: string, dataService): Observable<Action> {
@@ -52,7 +70,8 @@ export class ArticleEffects {
 
     constructor(
         private store: Store<Article>,
-        private actions$: Actions,
+        private actions$: Actions<PayloadAction>,
+        private router: Router,
         private dataService: RESTService
     ) { }
 }

@@ -22,6 +22,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     user$: Observable<User>;
     comments$: Observable<Comment[]>;
     commentsSub: Subscription;
+    article$: Observable<Article>;
     article: Article;
     currentUser: User;
     canModify: boolean;
@@ -41,18 +42,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.user$ = this.store.select(fromRoot.getUserState);
+        this.article$ = this.store.select(fromRoot.getSelectedArticle);
         this.comments$ = this.store.select(fromRoot.getCommentsForSelectedArticle);
         this.commentsSub = this.comments$.subscribe((comments) => this.comments = comments);
-
-        // Retreive the prefetched article
-        this.route.data.subscribe(
-            (data: { article: Article }) => {
-                this.article = data.article;
-
-                // Load the comments on this article
-                // this.populateComments();
-            }
-        );
 
         // Load the current user's data
         this.user$.subscribe(
@@ -81,7 +73,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
     deleteArticle() {
         this.isDeleting = true;
         this.store.dispatch(new EntityActions.Delete(slices.ARTICLE, this.article));
-        // this.router.navigateByUrl('/');  // TODO handle routing after an update
     }
 
     // populateComments() {

@@ -72,7 +72,9 @@ public class Article implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comment> comments = new HashSet<>();
 
-    @ManyToMany
+    // TODO: Consider using @ElementCollection instead for tags
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "article_tag",
                joinColumns = @JoinColumn(name="articles_id", referencedColumnName="id"),

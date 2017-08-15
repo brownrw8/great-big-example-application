@@ -20,7 +20,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/take';
 
 const WSConfig: WebSocketGatewayConfig = {
-    port: 5552,
+    port: 9010,
     secure: false,
     host: 'localhost'
 };

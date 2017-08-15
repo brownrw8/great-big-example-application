@@ -1,5 +1,5 @@
 import { PayloadAction } from '../util';
-
+import { SliceAction } from '../slice/slice.actions';
 import { typeFor } from '../util';
 
 export const actions = {
@@ -30,9 +30,11 @@ export const actions = {
 
 export const TEMP = 'TEMP_ID_VALUE';
 
-export class EntityAction<T> implements PayloadAction {
+export class EntityAction<T> extends SliceAction implements PayloadAction {
     protected actionName = '';
-    constructor(public slice: string, public payload: any) { }
+    constructor(public slice: string, public payload: any) {
+        super(slice, payload);
+    }
     get type() {
         return typeFor(this.slice, this.actionName);
     }
@@ -41,7 +43,7 @@ export class EntityAction<T> implements PayloadAction {
 
 export class Add<T> extends EntityAction<T> {
     protected actionName: string = actions.ADD;
-    constructor(public slice: string, payload: any = {}) {
+    constructor(public slice: string, public payload: any = {}) {
         super(slice, Object.assign({}, { dirty: true }, payload));
     }
     // If the payload contains the temp ID value, that means

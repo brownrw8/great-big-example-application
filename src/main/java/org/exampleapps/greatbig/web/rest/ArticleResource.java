@@ -1,16 +1,22 @@
+// References
+// https://github.com/spring-projects/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/owner/PetController.java
+
 package org.exampleapps.greatbig.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.exampleapps.greatbig.domain.Article;
 import org.exampleapps.greatbig.domain.Tag;
+import org.exampleapps.greatbig.domain.Author;
+import org.exampleapps.greatbig.domain.User;
 
 import org.exampleapps.greatbig.service.ProfileService;
 import org.exampleapps.greatbig.service.dto.ArticleDTO;
 import org.exampleapps.greatbig.repository.ArticleRepository;
+import org.exampleapps.greatbig.repository.AuthorRepository;
 import org.exampleapps.greatbig.repository.TagRepository;
-import org.exampleapps.greatbig.domain.User;
 import org.exampleapps.greatbig.repository.UserRepository;
 import org.exampleapps.greatbig.repository.search.ArticleSearchRepository;
+import org.exampleapps.greatbig.repository.search.TagSearchRepository;
 import org.exampleapps.greatbig.security.SecurityUtils;
 import org.exampleapps.greatbig.web.rest.util.HeaderUtil;
 import org.exampleapps.greatbig.web.rest.util.PaginationUtil;
@@ -52,16 +58,28 @@ public class ArticleResource {
 
     private final ArticleRepository articleRepository;
 
+    private final AuthorRepository authorRepository;
+
     private final UserRepository userRepository;
 
-    // private final TagRepository tagRepository;
+    private final TagRepository tagRepository;
+
+    private final TagSearchRepository tagSearchRepository;
 
     private final ArticleSearchRepository articleSearchRepository;
 
-    public ArticleResource(ArticleRepository articleRepository, ArticleSearchRepository articleSearchRepository, UserRepository userRepository) {
+    public ArticleResource(ArticleRepository articleRepository,
+                           ArticleSearchRepository articleSearchRepository,
+                           UserRepository userRepository,
+                           TagRepository tagRepository,
+                           TagSearchRepository tagSearchRepository,
+                           AuthorRepository authorRepository) {
         this.articleRepository = articleRepository;
         this.articleSearchRepository = articleSearchRepository;
         this.userRepository = userRepository;
+        this.tagRepository = tagRepository;
+        this.tagSearchRepository = tagSearchRepository;
+        this.authorRepository = authorRepository;
     }
 
     /**
@@ -73,13 +91,59 @@ public class ArticleResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
 
+    @PostMapping("/articles")
+    @Timed
+    public ResponseEntity<Article> createArticle(@RequestBody ArticleDTO articleDTO) throws URISyntaxException {
+        log.debug("REST request to save Article : {}", articleDTO);
+        // if (article.getId() != null) {
+        //     return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
+        // }
+        Article article = new Article();
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        if (currentUser.isPresent()) {
+            Author author = authorRepository.findById(currentUser.get().getId());
+            if (author == null) {
+                author = new Author();
+                author.setId(currentUser.get().getId());
+                authorRepository.save(author);
+            }
+            article.setAuthor(author);
+            for(int i = 0; i < articleDTO.getTagList().length; i++) {
+                String tagName = articleDTO.getTagList()[i];
+                Tag tag = tagRepository.findOneByName(tagName);
+                if (tag == null) {
+                    tag = new Tag();
+                    tag.setName(tagName);
+                    tagRepository.save(tag);
+                    tagSearchRepository.save(tag);
+                }
+                article.addTag(tag);
+            }
+            article.setSlug(articleDTO.getTitle().replace(' ', '_').toLowerCase());
+            article.setTitle(articleDTO.getTitle());
+            article.setDescription(articleDTO.getDescription());
+            article.setBody(articleDTO.getBody());
+            article.setCreatedAt(ZonedDateTime.now());
+            article.setUpdatedAt(ZonedDateTime.now());
+
+            Article result = articleRepository.save(article);
+            articleSearchRepository.save(result);
+            return ResponseEntity.created(new URI("/api/articles/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+        } else {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "nocurrentuser", "No current user")).body(null);
+        }
+
+    }
+
     // @PostMapping("/articles")
     // @Timed
-    // public ResponseEntity<Article> newcreateArticle(@RequestBody ArticleDTO article) throws URISyntaxException {
+    // public ResponseEntity<Article> createArticle(@RequestBody Article article) throws URISyntaxException {
     //     log.debug("REST request to save Article : {}", article);
-    //     // if (article.getId() != null) {
-    //     //     return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
-    //     // }
+    //     if (article.getId() != null) {
+    //         return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
+    //     }
 
     //     // for(int i = 0; i < article.getTagList().length; i++) {
     //     //     String tagName = article.getTagList()[i];
@@ -104,50 +168,12 @@ public class ArticleResource {
     //     article.setUpdatedAt(ZonedDateTime.now());
     //     article.setSlug(article.getTitle().replace(' ', '_').toLowerCase());
 
-    //     Article result = articleRepository.save(article.toArticle());
+    //     Article result = articleRepository.save(article);
     //     articleSearchRepository.save(result);
     //     return ResponseEntity.created(new URI("/api/articles/" + result.getId()))
     //         .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
     //         .body(result);
     // }
-
-    @PostMapping("/articles")
-    @Timed
-    public ResponseEntity<Article> createArticle(@RequestBody Article article) throws URISyntaxException {
-        log.debug("REST request to save Article : {}", article);
-        if (article.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new article cannot already have an ID")).body(null);
-        }
-
-        // for(int i = 0; i < article.getTagList().length; i++) {
-        //     String tagName = article.getTagList()[i];
-        //     Tag tag = tagRepository.findOneByName(tagName);
-        //     article.addTag(tagRepository.save(tag));
-        // }
-
-        // // search for tags
-        // article.tagList.stream()
-        //     .map(Tag::getUserId)
-        //     .collect(Collectors.toList());
-
-        // val tagList = article.tagList.map {
-        //     tagRepository.findByName(it) ?: tagRepository.save(Tag(name = it))
-        // }
-
-        // val article = Article(slug = slug,
-        //         author = currentUser, title = newArticle.title!!, description = newArticle.description!!,
-        //         body = newArticle.body!!, tagList = tagList.toMutableList())
-
-        article.setCreatedAt(ZonedDateTime.now());
-        article.setUpdatedAt(ZonedDateTime.now());
-        article.setSlug(article.getTitle().replace(' ', '_').toLowerCase());
-
-        Article result = articleRepository.save(article);
-        articleSearchRepository.save(result);
-        return ResponseEntity.created(new URI("/api/articles/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
 
     /**
      * PUT  /articles : Updates an existing article.
@@ -162,9 +188,9 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<Article> updateArticle(@Valid @RequestBody Article article) throws URISyntaxException {
         log.debug("REST request to update Article : {}", article);
-        if (article.getId() == null) {
-            return createArticle(article);
-        }
+        // if (article.getId() == null) {
+        //     return createArticle(article);
+        // }
         Article result = articleRepository.save(article);
         articleSearchRepository.save(result);
         return ResponseEntity.ok()
@@ -223,17 +249,31 @@ public class ArticleResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    // /**
+    //  * GET  /articles/:id : get the "id" article.
+    //  *
+    //  * @param id the id of the article to retrieve
+    //  * @return the ResponseEntity with status 200 (OK) and with body the article, or with status 404 (Not Found)
+    //  */
+    // @GetMapping("/articles/{id}")
+    // @Timed
+    // public ResponseEntity<Article> getArticle(@PathVariable Long id) {
+    //     log.debug("REST request to get Article : {}", id);
+    //     Article article = articleRepository.findOneWithEagerRelationships(id);
+    //     return ResponseUtil.wrapOrNotFound(Optional.ofNullable(article));
+    // }
+
     /**
-     * GET  /articles/:id : get the "id" article.
+     * GET  /articles/:slug : get the "slug" article.
      *
-     * @param id the id of the article to retrieve
+     * @param slug the slug of the article to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the article, or with status 404 (Not Found)
      */
-    @GetMapping("/articles/{id}")
+    @GetMapping("/articles/{slug}")
     @Timed
-    public ResponseEntity<Article> getArticle(@PathVariable Long id) {
-        log.debug("REST request to get Article : {}", id);
-        Article article = articleRepository.findOneWithEagerRelationships(id);
+    public ResponseEntity<Article> getArticle(@PathVariable String slug) {
+        log.debug("REST request to get Article : {}", slug);
+        Article article = articleRepository.findOneBySlugWithEagerRelationships(slug);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(article));
     }
 

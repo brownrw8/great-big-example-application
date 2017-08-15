@@ -1,5 +1,4 @@
-<div class="jhi-article-component">
-
+<div class="jhi-article-component" *ngIf="article$ | async as article">
     <div class="banner">
         <div class="container">
             <h1>{{ article.title }}</h1>

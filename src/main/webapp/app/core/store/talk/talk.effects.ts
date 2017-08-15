@@ -53,6 +53,12 @@ export class TalkEffects {
         private watch: WatchService
     ) { }
 
+    /**
+     * @whatItDoes Use this function to do something in response to routing to a specific route
+     *
+     * @param segment The url part to watch for
+     * @param callback The function to execute when routing to segment
+     */
     private handleNavigation(segment: string, callback: (a: ActivatedRouteSnapshot, state: RootState) => Observable<any>) {
         const nav = this.actions$.ofType(ROUTER_NAVIGATION)
             .map(secondSegment)

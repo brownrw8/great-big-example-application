@@ -72,13 +72,7 @@ export class AddPage implements OnInit, OnDestroy {
         this.updateArticle(this.articleForm.value);
 
         const submission = this.article;
-        // const submission = {
-        //     title: this.articleForm.value.title,
-        //     description: this.articleForm.value.description,
-        //     body: this.articleForm.value.body,
-        //     tagList: this.articleForm.value.tagField.split(' ') }
         this.store.dispatch(new EntityActions.Add(slices.ARTICLE, submission));
-        // (article) => this.router.navigateByUrl('/article/' + article.slug),  TODO: handle routing on success
     }
 
     updateArticle(values: Object) {

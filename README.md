@@ -8,109 +8,111 @@
 
 # Background and Motivation
 
-The main goal of this project is to make available source code for a state-of-the-art web application 
-the likes of which only exist as intellectual property visible exclusively to employed experts who have 
+The main goal of this project is to make available source code for a state-of-the-art web application
+the likes of which only exist as intellectual property visible exclusively to employed experts who have
 signed non-disclosure agreements and can't let you see it or learn how they made everything work together.
 
     You should not have to get hired before learning how professionals do a thing
 
-The other goal is to assemble enough functionality into one excellent, free example application that people 
-think twice before starting another one-feature, no edge-case, example and exacerbating the already 
+The other goal is to assemble enough functionality into one excellent, free example application that people
+think twice before starting another one-feature, no edge-case, example and exacerbating the already
 overwhelming starting point option overload. Hopefully this will persuade a few people to direct
-that energy instead into improving what already exists. To this end I have made, over the course of the past 4 years, 
+that energy instead into improving what already exists. To this end I have made, over the course of the past 4 years,
 [the world's biggest, most detailed database of web technology selling points](https://goo.gl/yp2YgJ)
 so things could be compared easily in broad daylight without the hype and selective disclosure of
-a typical product/project sales page. Use it to determine what's best. Then help make it better. See 
-[below](https://github.com/dancancro/great-big-example-application#demonstrations-features-and-selling-points) 
+a typical product/project sales page. Use it to determine what's best. Then help make that thing better. See
+[below](https://github.com/dancancro/great-big-example-application#demonstrations-features-and-selling-points)
 for a sample slice of it.
 
 See the project's [to do list](https://github.com/dancancro/great-big-example-application/projects/1) for opportunities to contribute.
 
 # But why one great big app?
 
-"There are already lots of little example apps" (written in all different styles). 
+"There are already lots of little example apps" (written in all different styles).
 
-"Software development has _always_ been taught using lots of inconsistent simple examples". 
+"Software development has _always_ been taught using lots of inconsistent simple examples".
 
 "Every real app is different" (so teaching with none of them is better than with any?).
 
-"Big (real) artifacts of the craft are too complex and overwhelming for students of web development" 
-(but not for students of every other line of work under the sun?).
+"Big, commercial artifacts of the craft are too complex and overwhelming for students of web development"
+(but not for those same students on the day after they become an employee? not for students of every
+other line of work under the sun?).
 
-"Approaches are a matter of personal preference and shouldn't be imposed" (on beginners who just want 
-to make something that totally works, don't want to waste time learning an approach that the pros 
-[don't actually use](https://gitter.im/angular/angular?at=596d4193f5b3458e3057ea73), and don't have 
-any preferences yet). 
+"Approaches are a matter of personal preference and shouldn't be imposed" (on beginners who just want
+to make something that totally works, don't want to waste time learning an approach that the pros
+[don't actually use](https://gitter.im/angular/angular?at=596d4193f5b3458e3057ea73), and don't have
+any preferences yet).
 
-"If _all_ you want to do is be a code monkey then sure, study real examples, but _real_ computer 
-scientists are above that and only engage in abstract thought of conceptual, unreal demos" (and exposure 
+"If _all_ you want to do is be a code monkey then sure, study real examples, but _real_ computer
+scientists are above that and only engage in abstract thought of conceptual, unreal demos" (and exposure
 to code used to conduct real business is somehow a detriment to learning abstract concepts?).
 
-"Creators of many tutorials don't have time to implement all of them as parts of the same big example 
-(like what they have readily at hand because they do this every day for a living), so they need to 
+"Creators of many tutorials don't have time to implement all of them as parts of the same big example
+(like what they have readily at hand because they do this every day for a living), so they need to
 make each one from scratch by spending the time to simplify the approaches they use on the job."
 
 "It could take as many as five or even six minutes to install all the packages for a big example."
 
 "Bloated!!"
 
-There's a strange resistance to using big, commercial-grade examples as the _primary_ instrument of web 
-development education or even at all. Would you teach automotive engineering using go-karts? Home construction 
-using just windows? I don't understand the resistance, not even a little. The case seems pretty plain to me 
+There's a strange resistance to using big, commercial-grade examples as the _primary_ instrument of web
+development education or even at all. Would you teach automotive engineering using go-karts? Home construction
+using just windows? I don't understand the resistance, not even a little. As ones and zeroes, expertise
+in this field is uniquely easily transferrable, yet for some reason it isn't. The case seems pretty plain to me
 but to settle the matter, here are some reasons why web development should be taught using big examples:
 
-    1. Production-ready code answers every question, not just what the authors of tutorials choose to 
+    1. Production-ready code answers every question, not just what the authors of tutorials choose to
     answer through their choices of simplifications.
-    
+
     2. To make something new as an expert would do it, it's much easier to copy and modify, or study and
-    emulate, an exact thing made by experts, no matter how complex, than to synthesize the missing details 
-    removed for the sake of "simplicity", out of nothing, no matter how simple. To do the latter requires 
+    emulate, an exact thing made by experts, no matter how complex, than to synthesize the missing details
+    removed for the sake of simplicity, out of nothing, no matter how simple. To do the latter requires
     full comprehension of a menagerie of inconsistent learning materials in inconsistent contexts, all but
-    one of which approaches you will ultimately reject and count as wasted learn time. I did that to make 
-    this; it's not fun. To do the former you copy, find/replace, modify, and compare what you're making 
-    with what works until what you're making also works. It's just what you'll do on the job to make 
-    something new *after* you have signed the NDA and get keys to the castle of doing things like 
+    one of which approaches you will ultimately reject and count as wasted learn time. I did that to make
+    this; it's not fun. To do the former you copy, find/replace, modify, and compare what you're making
+    with what works until what you're making also works. It's just what you'll do on the job to make
+    something new *after* you have signed the NDA and get keys to the castle of doing things like
     professionals do and the vault of expertly made things to copy/modify, or study/emulate if you prefer.
     Then spend all that saved time instead solving problems that _haven't_ been solved already.
 
     3. If you want a job making commercial-grade code, you should study commercial-grade code,
     not tutorial-grade code. Perfect practice makes perfect.
-    
+
     4. Each tutorial contains some parts related to the lesson and some ancillary parts that are there
     to make the example work. The ancillary parts will differ from tutorial to tutorial. So with each
-    new tutorial you need to re-learn these off-topic things in order to understand the lesson's subject 
-    matter. With a single, unified, big example that is used to teach every concept, you only need to 
-    learn these parts once.
-    
-    5. Tutorials show you how you *can* use a feature of the technology but often they 
-    do so in situations when in real life you would not do things that way. This can cost a lot of 
+    new tutorial you need to learn another take on these off-topic things in order to understand the
+    lesson's subject matter. With a single, unified, big example used for all the lessons, you only need
+    to learn these parts once and can then spend your thinking energy on the lessons.
+
+    5. Tutorials show you how you *can* use a feature of the technology but often they
+    do so in situations when in real life you would not do things that way. This can cost a lot of
     time. It's just as important to know when to use a technology's features as it is to know how.
 
     6. If you want to know how fast an app using a particular technology will build, run and test in
-    your development environment before investing the time to learn it, then you need source code for 
+    your development environment before investing the time to learn it, then you need source code for
     a big app before you even write Hello World.
 
     7. If you want to know the complexity limits a technology will place on your app before you
     commit to using it, there's no better way than to see a complex example made with that technology.
 
     8. It's a whole lot easier to vet an idea or accept an approach others have taken when you have
-    a complete application with all of its edge cases to show you what needs to be accommodated. 
+    a complete application with all of its edge cases to show you what needs to be accommodated.
     By containing many edge cases, a big application will quickly answer the common learner's question:
     "Why isn't this done the simple way I think it should be done?", or "What if we tried X instead?"
     Without access to lots of edge cases in the beginning, you can go down the wrong road for a long time.
 
-I've had a peculiarly difficult time making the case to software development educators to provide 
-a single, giant example app for their students akin to what they work on every day for their clients 
-and employers. I'm not sure why, but it can be pretty hard to find out exactly how the best in this business 
+I've had a peculiarly difficult time making the case to software development educators to provide
+a single, giant example app for their students akin to what they work on every day for their clients
+and employers. I'm not sure why, but it can be pretty hard to find out exactly how the best in this business
 do things. So here's this attempt at one from unemployed me. No NDA needed to see it.
 
 # How did this great big app happen?
 
-This application is being constructed by combining small open source demos into one big application. It's 
+This application is being constructed by combining small open source demos into one big application. It's
 basically the application that would have been had all the tutorial experts worked together instead of separately.
 Coming from different demos, the features of the app are not related to each other and it won't make any sense
 to have them together but the point is just to demonstrate how things should work technically, so that's okay.
-I took these projects and integrated/restructured/restyled their code according to the following prioritization. 
+I took these projects and integrated/restructured/restyled their code according to the following prioritization.
 Disagreements in approach between two influences are resolved by the
 lower authority yielding to the higher one:
 
@@ -125,16 +127,16 @@ lower authority yielding to the higher one:
 9. [ngrx State Management - Rate/Watch talks](https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b) by [@vsavkin](https://github.com/vsavkin)
 10. [scalable-architecture-demo - P2P Typing Game](https://github.com/mgechev/scalable-architecture-demo) by [@mgechev](https://github.com/mgechev)
 11. [ngrx example app - book collection](https://github.com/ngrx/platform/tree/master/example-app) by [@MikeRyan52](https://github.com/MikeRyan52) and [@brandonroberts](https://github.com/brandonroberts)
-12. [ng2-state-talk - drag/editable notes](https://github.com/JavascriptMick/ng2-state-talk) by [@JavascriptMick](https://github.com/JavascriptMick) 
+12. [ng2-state-talk - drag/editable notes](https://github.com/JavascriptMick/ng2-state-talk) by [@JavascriptMick](https://github.com/JavascriptMick)
 13. [rangle-starter Angular 2 with TypeScript and Redux version - counter](https://www.npmjs.com/package/rangle-starter) by [@SethDavenport](https://github.com/SethDavenport)
 
 In addition to the features from these demos, I added one of my own. I replaced
 
-14. [this other project](http://www.bernierebuttals.org) which was made with JQuery and Google Scripts. The data is 
-contained in [this Google Sheet](https://docs.google.com/spreadsheets/d/1RdIhMdNCRJ-xtl6IgbT2SdChtLIYW8VXeloq7rR1lqY/edit#gid=50602236) 
+14. [this other project](http://www.bernierebuttals.org) which was made with JQuery and Google Scripts. The data is
+contained in [this Google Sheet](https://docs.google.com/spreadsheets/d/1RdIhMdNCRJ-xtl6IgbT2SdChtLIYW8VXeloq7rR1lqY/edit#gid=50602236)
 and served as JSON by a Google script. Well, I tried to anyway. This still isn't working.
 
-A great big thank you to those who created the example demos from which I put together this amalgam. 
+A great big thank you to those who created the example demos from which I put together this amalgam.
 
 ### Home Screen
 ![Image](./docs/images/home.png?raw=true)
@@ -172,20 +174,20 @@ A great big thank you to those who created the example demos from which I put to
 
 # My Innovations
 
-While the goal of the project is to combine the wisdom of different experts, nobody can resist introducing improvements when there's 
-no obvious case against doing so. So you will see a couple of practices in this project that came from my head rather than the sources 
+While the goal of the project is to combine the wisdom of different experts, nobody can resist introducing improvements when there's
+no obvious case against doing so. So you will see a couple of practices in this project that came from my head rather than the sources
 of expertise from which the project was assembled. If you can think of reasons not to do these things, please let me know.
 
 1. I put the Redux store reducers in `app/core/store` separate from the feature directories located under `app` and did not make folders
 for `reducers`, `actions`, and `effects`. There is a many-to-many relationship between Redux store slices and features. So putting the Redux
 code for a given slice into the same directory as one of the features that uses it doesn't make sense. How do you decide which feature gets it?
 
-2. As much as practical the names of files in a directory begin with the directory name. I did this to prevent directories from having a mixture of 
-unrelated concerns. If a directory in a source demo had files for two different things, I created more directories. I thought about 
+2. As much as practical the names of files in a directory begin with the directory name. I did this to prevent directories from having a mixture of
+unrelated concerns. If a directory in a source demo had files for two different things, I created more directories. I thought about
 removing that part of the file name, `src/app/app.page.ts` -> `src/app/page.ts`, for the sake of DRY, but that makes it too confusing when
 you are working on multiple files with the same names and different directories.
 
-3. I noticed a lot of duplication and boilerplate of identical CRUD code for each of my types of entities. So I made utility functions and 
+3. I noticed a lot of duplication and boilerplate of identical CRUD code for each of my types of entities. So I made utility functions and
 the related actions and models for each of three types of store slice - [entities](https://github.com/dancancro/great-big-example-application/tree/master/src/main/webapp/app/core/store/entity), [id lists](https://github.com/dancancro/great-big-example-application/tree/master/src/main/webapp/app/core/store/id), and [slices](https://github.com/dancancro/great-big-example-application/tree/master/src/main/webapp/app/core/store/slice) (everything else).
 
 4. I came up with a mini lexicon of file types to keep file names shorter and more expressive. A "page" is understood to be a smart `@Component`
@@ -310,23 +312,25 @@ will generate few files:
 ## Building for production
 
 This app is setup to use Postgresql for production data storage. I always have a terrible time setting up PostgreSQL.
-Should I use the postgresql.org download? the EnterpriseDB download? The homebrew version? Isn't there a version
+Should I use the postgresql.org download? the EnterpriseDB download? the homebrew version? Isn't there a version
 that comes with OSX? If you make a mistake and have to uninstall, which of many different uninstall instructions
-should you use? So I'm not going to put instructions here because they probably won't work for you. 
+should you use? It's confusing. So I'm not going to put instructions here because they probably won't work for you.
 
-Somehow set up a server on localhost: 5432 with a database named "GreatBigExampleApplication" owned by a user named "GreatBigExampleUser" 
-with password "password".
+Somehow set up a server on localhost:5432 with a database named "GreatBigExampleApplication" owned by a user named "GreatBigExampleUser"
+with password "password". If you use other values, just edit `src/main/resources/config/application-prod.yml` accordingly.
 
-To optimize the GreatBigExampleApplication application for production, run:
+Then run:
 
     ./mvnw -Pprod clean package
 
 This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
-To ensure everything worked, run:
+To ensure everything worked, run the following. Unlike dev, this will be one server for both the front and back.
 
     java -jar target/*.war
 
-Then navigate to [http://localhost:8090](http://localhost:8090) in your browser.
+This will create the database tables the first time and execute liquibase changes as you add them.
+
+To see the app navigate to [http://localhost:8090](http://localhost:8090) in your browser.
 
 Refer to [Using JHipster in production][] for more details.
 
@@ -403,32 +407,31 @@ To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-c
 
 ## Deploy to Heroku
 
-Since this is a big app, you need to hack the jhipster stdout buffer size or it won't work. Edit 
+Since this is a big app, you need to hack the jhipster stdout buffer size or it won't work. Edit
 file `node_modules/generator-jhipster/generator-base.js` by increasing to 2000 the buffer size
 
     child.stdout = exec(buildCmd, { maxBuffer: 1024 * 500 }, cb).stdout;
 
 Then run the following. This will use the jhipster in your project's node_modules directory.
-    
+
     yo jhipster:heroku
 
-
-If you get stuck on anything, no matter how little, 
+If you get stuck on anything, no matter how little,
 please let me know. I know how the little things are what cause the problems and I don't want you to have any problems.
 
 # FAQ
 
 ## 1) In many Redux examples it seems like there is a lot of boilerplate and duplicate code per store slice. Why not have the Action Types be created dynamically by combining the store slice name nouns and action name verbs?
 
-I agree. That's why I created utility functions to hold all the common code and got rid of plural names to enable generic handling, 
-and I replaced static action type definitions with dynamic functions that combine slice nouns and action verbs. It also turns out that most of 
+I agree. That's why I created utility functions to hold all the common code and got rid of plural names to enable generic handling,
+and I replaced static action type definitions with dynamic functions that combine slice nouns and action verbs. It also turns out that most of
 the tricky RxJS code is also boilerplate code that now resides inside functions that you don't have to mess with most of the time. So you
 should be able to get productive on an app that uses Observables without first having to be an expert at them, which is hard.
 
 That's a pretty big benefit. What could be seen as costs of doing that?
 
-1) You lose some static type checking of action types. 
-> Given that most Redux apps are done with React and React doesn't have any static type checking at all, I decided that was a small 
+1) You lose some static type checking of action types.
+> Given that most Redux apps are done with React and React doesn't have any static type checking at all, I decided that was a small
 price to pay. You can also mix this approach and the other one if you really want to. Use the general, un-type-checked, CRUD stuff for
 ordinary parts of your app (most of it), and use hard-coded, specialty action types when you really need TypeScript's compiler to help you.
 
@@ -446,11 +449,11 @@ That gives us two checks: `action.type` must be a string value among the union o
 of the case values are not among this union of string values, Typescript will point that out to you.
 And same with `action.payload`. It must be an object with the structure of the payload property of one of the classes that `action` can be.
 
-2) Using only generic action classes like `LoadSuccess` instead of `SearchComplete`, the dispatch calls in your components will be 
+2) Using only generic action classes like `LoadSuccess` instead of `SearchComplete`, the dispatch calls in your components will be
 more explicit and refer to details of the store.
-> I see this as a plus in most cases. Otherwise you have extraneous levels of abstraction and you have to look into three files to see exactly 
-what's going on. In most cases, the same person is writing the component, action and reducer files, so what's the point in hiding details 
-in one of them from the other? Now you can get the whole story by reading one line of code. You should decouple things when the need arises, 
+> I see this as a plus in most cases. Otherwise you have extraneous levels of abstraction and you have to look into three files to see exactly
+what's going on. In most cases, the same person is writing the component, action and reducer files, so what's the point in hiding details
+in one of them from the other? Now you can get the whole story by reading one line of code. You should decouple things when the need arises,
 but you can overdo it too.
 
 ## 2) Why are entities modeled as a hash (map) of objects and an array of IDs instead of just an array of objects?
@@ -461,9 +464,9 @@ I got the idea from the ngrx example app. I asked about it once and was told tha
 
 This makes it possible to have the application work offline. It also lets your objects have some persisted attributes and some transient, UI attributes without it affecting the
 api code. The way this works is that the UI lets you display things before they have been persisted to the server. Then a request to persist happens. The request only sends persistent
-attributes because the api is ignorant of the user interface. When the response comes back you can find the original object by its previously established ID and handle it accordingly. 
-If successful, you'd likely do nothing that the user sees. However, if you hadn't given it an ID, it would be discarded and recreated from the object in the response. This response 
-object would not have all the transient attributes of the object in the request. So, for example, if its location on the screen were a transient attribute, then the user would see it 
+attributes because the api is ignorant of the user interface. When the response comes back you can find the original object by its previously established ID and handle it accordingly.
+If successful, you'd likely do nothing that the user sees. However, if you hadn't given it an ID, it would be discarded and recreated from the object in the response. This response
+object would not have all the transient attributes of the object in the request. So, for example, if its location on the screen were a transient attribute, then the user would see it
 jump to a default location since the former location would be lost.
 
 ## 4) Why is it necessary to copy objects before posting to the server?

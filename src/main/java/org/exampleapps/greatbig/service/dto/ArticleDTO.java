@@ -11,6 +11,18 @@ import javax.persistence.Lob;
 /**
  * A DTO for the Article entity.
  *
+ * Posted like this
+ * {
+ *  "article": {
+ *    "title": "How to train your dragon",
+ *    "description": "Ever wonder how?",
+ *    "body": "You have to believe",
+ *    "tagList": ["reactjs", "angularjs", "dragons"]
+ *  }
+ * }
+ *
+ * Read like this
+ *
  * "article: {
  *   "slug": "how-to-train-your-dragon",
  *   "title": "How to train your dragon",
@@ -52,8 +64,6 @@ public class ArticleDTO implements Serializable {
     private Boolean favorited;
 
     private Integer favoritesCount;
-
-    private ProfileDTO author;
 
     public String getSlug() {
         return slug;
@@ -123,14 +133,6 @@ public class ArticleDTO implements Serializable {
         return favoritesCount;
     }
 
-    public void setAuthor(ProfileDTO author) {
-        this.author = author;
-    }
-
-    public ProfileDTO getAuthor() {
-        return author;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -152,19 +154,6 @@ public class ArticleDTO implements Serializable {
         return Objects.hashCode(getSlug());
     }
 
-    public Article toArticle() {
-        Article article = new Article();
-        article.setSlug(this.slug);
-        article.setTitle(this.title);
-        article.setDescription(this.description);
-        article.setBody(this.body);
-        // article.setTags(this.tagList);
-        article.setCreatedAt(this.createdAt);
-        article.setUpdatedAt(this.updatedAt);
-        // article.setAuthor(this.author);
-        return article;
-    }
-
     @Override
     public String toString() {
         return "article {" +
@@ -175,7 +164,6 @@ public class ArticleDTO implements Serializable {
             ", tagList='" + getTagList().toString() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", updatedAt='" + getUpdatedAt() + "'" +
-            ", author='" + getAuthor().toString() + "'" +
             "}";
     }
 }
